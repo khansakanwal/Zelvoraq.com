@@ -3,13 +3,6 @@
 @tailwind utilities;
 
 :root {
-  /* ============================================================
-     PROVISIONAL DESIGN TOKENS — v0.1
-     These are placeholder brand colors approved for the build.
-     Final logo/brand identity is not locked. To reskin the entire
-     site, edit ONLY the values below — no component references a
-     raw hex value anywhere else in the codebase.
-     ============================================================ */
   --bg-base: #0b0e17;
   --bg-surface: #141a28;
   --bg-elevated: #1c2333;
@@ -26,9 +19,6 @@
   --border-subtle: #232b3d;
   --border-strong: #323c52;
 
-  /* RGB-triplet mirrors of the tokens above, used only so Tailwind's opacity
-     modifiers (e.g. bg-accent/10, bg-base/90) work against these custom colors.
-     Keep every pair in sync if you edit a color above. */
   --bg-base-rgb: 11 14 23;
   --bg-surface-rgb: 20 26 40;
   --bg-elevated-rgb: 28 35 51;
@@ -80,7 +70,6 @@ body {
   }
 }
 
-/* Reveal-on-scroll utility, paired with a small IntersectionObserver hook */
 .reveal {
   opacity: 0;
   transform: translateY(14px);
@@ -90,4 +79,34 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
-/* refresh */
+
+main > section:first-of-type,
+#assessment,
+main > section:last-of-type {
+  position: relative;
+  isolation: isolate;
+}
+
+main > section:first-of-type::before,
+#assessment::before,
+main > section:last-of-type::before {
+  content: "";
+  position: absolute;
+  inset: -60px 0 0 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+main > section:first-of-type::before {
+  background:
+    radial-gradient(500px circle at 15% 10%, rgb(var(--accent-primary-rgb) / 0.10), transparent 60%),
+    radial-gradient(420px circle at 88% 45%, rgb(var(--accent-data-rgb) / 0.08), transparent 60%);
+}
+
+#assessment::before {
+  background: radial-gradient(480px circle at 50% 0%, rgb(var(--accent-primary-rgb) / 0.08), transparent 65%);
+}
+
+main > section:last-of-type::before {
+  background: radial-gradient(480px circle at 50% 100%, rgb(var(--accent-data-rgb) / 0.08), transparent 65%);
+}
