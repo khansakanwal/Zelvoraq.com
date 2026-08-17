@@ -39,13 +39,14 @@ export function EcommerceIcon({ className = "" }: { className?: string }) {
 }
 
 export function BrandMark({ className = "" }: { className?: string }) {
-  // Three connected nodes — placeholder mark, deliberately not a robot/brain/circuit icon.
-  // Replace with the final logo asset when available; nothing else references its shape.
+  // Zelvoraq's approved brand mark — three connected nodes, representing
+  // systems working together. Colors read from the design tokens in
+  // globals.css, so a future palette change updates this mark automatically.
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
       <circle cx="5" cy="19" r="2.5" fill="var(--accent-primary)" />
       <circle cx="19" cy="5" r="2.5" fill="var(--accent-primary)" />
-      <circle cx="19" cy="19" r="2.5" fill="var(--accent-data)" />
+      <circle cx="19" cy="19" r="2.5" fill="var(--accent-primary)" />
       <path d="M6.5 17.5 17.5 6.5M17.5 17.5 19 5" stroke="var(--text-tertiary)" strokeWidth="1.2" />
     </svg>
   );
