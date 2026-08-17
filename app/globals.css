@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ============================================================
+     PROVISIONAL DESIGN TOKENS — v0.1
+     These are placeholder brand colors approved for the build.
+     Final logo/brand identity is not locked. To reskin the entire
+     site, edit ONLY the values below — no component references a
+     raw hex value anywhere else in the codebase.
+     ============================================================ */
+  --bg-base: #0b0e17;
+  --bg-surface: #141a28;
+  --bg-elevated: #1c2333;
+  --bg-elevated-2: #232b3d;
+
+  --text-primary: #f4f5f8;
+  --text-secondary: #97a1b5;
+  --text-tertiary: #5c6579;
+
+  --accent-primary: #e3a93e;
+  --accent-primary-hover: #f0bb57;
+  --accent-data: #3ec6a8;
+
+  --border-subtle: #232b3d;
+  --border-strong: #323c52;
+
+  /* RGB-triplet mirrors of the tokens above, used only so Tailwind's opacity
+     modifiers (e.g. bg-accent/10, bg-base/90) work against these custom colors.
+     Keep every pair in sync if you edit a color above. */
+  --bg-base-rgb: 11 14 23;
+  --bg-surface-rgb: 20 26 40;
+  --bg-elevated-rgb: 28 35 51;
+  --bg-elevated-2-rgb: 35 43 61;
+  --text-primary-rgb: 244 245 248;
+  --text-secondary-rgb: 151 161 181;
+  --text-tertiary-rgb: 92 101 121;
+  --accent-primary-rgb: 227 169 62;
+  --accent-primary-hover-rgb: 240 187 87;
+  --accent-data-rgb: 62 198 168;
+  --border-subtle-rgb: 35 43 61;
+  --border-strong-rgb: 50 60 82;
+
+  --focus-ring: #e3a93e;
+}
+
+* {
+  border-color: var(--border-subtle);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+}
+
+::selection {
+  background: var(--accent-primary);
+  color: #14181f;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Reveal-on-scroll utility, paired with a small IntersectionObserver hook */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
