@@ -88,9 +88,25 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="bg-surface border border-borderc rounded-lg2 p-6 shadow-card">
-            <span className="text-secondary text-[13px] font-mono mb-3 block">Live system example</span>
-            <WorkflowDiagram nodes={["Customer", "AI Agent", "Qualification", "Automation", "CRM", "Booking"]} scale="compact" />
+          <div className="bg-surface border border-borderc rounded-lg2 overflow-hidden shadow-card">
+            <div className="flex items-center gap-1.5 px-4 py-3 border-b border-borderc bg-elevated">
+              <span className="w-2.5 h-2.5 rounded-full bg-elevated2" />
+              <span className="w-2.5 h-2.5 rounded-full bg-elevated2" />
+              <span className="w-2.5 h-2.5 rounded-full bg-elevated2" />
+              <span className="ml-3 font-mono text-[10px] text-tertiary">zelvoraq-agent · live</span>
+            </div>
+            <div className="p-5">
+              <div className="flex flex-col gap-2 mb-5">
+                <div className="self-start max-w-[85%] bg-elevated rounded-lg px-3 py-2 text-[12px] text-secondary">
+                  Hi, I&apos;d like to know more about your pricing.
+                </div>
+                <div className="self-end max-w-[85%] bg-accent text-[#191307] rounded-lg px-3 py-2 text-[12px] font-medium">
+                  Happy to help — what does your team currently handle manually?
+                </div>
+              </div>
+              <span className="text-secondary text-[13px] font-mono mb-3 block">Live system example</span>
+              <WorkflowDiagram nodes={["Customer", "AI Agent", "Qualification", "Automation", "CRM", "Booking"]} scale="compact" />
+            </div>
           </div>
         </div>
       </section>
@@ -132,7 +148,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {solutions.map((s) => (
             <Reveal key={s.slug}>
-              <ServiceCard solution={s} />
+              <ServiceCard solution={s} showVisual />
             </Reveal>
           ))}
         </div>
