@@ -56,7 +56,6 @@ export function Footer() {
           <ul className="flex flex-col gap-2.5">
             <li><Link href="/privacy-policy" className="text-secondary text-[13.5px] hover:text-primary transition-colors">Privacy Policy</Link></li>
             <li><Link href="/terms-of-service" className="text-secondary text-[13.5px] hover:text-primary transition-colors">Terms of Service</Link></li>
-            {/* TODO: replace with the real business inbox before launch */}
             <li><a href="mailto:hello@zelvoraq.com" className="text-secondary text-[13.5px] hover:text-primary transition-colors">hello@zelvoraq.com</a></li>
           </ul>
         </div>
@@ -65,7 +64,7 @@ export function Footer() {
       <div className="border-t border-borderc">
         <div className="max-w-container mx-auto px-6 md:px-8 py-6 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-tertiary text-[12.5px]">© {new Date().getFullYear()} Zelvoraq. All rights reserved.</p>
-          <p className="text-tertiary text-[12.5px] font-mono">Built as an AI systems company, for AI systems companies.</p>
+          <p className="text-tertiary text-[12.5px] font-mono">Built for businesses, not for hype.</p>
         </div>
       </div>
     </footer>
