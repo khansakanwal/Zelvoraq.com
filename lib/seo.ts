@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 const SITE_NAME = "Zelvoraq";
 const SITE_URL = "https://www.zelvoraq.com"; // TODO: replace with the real production domain before launch
-const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.png`; // TODO: generate a real 1200x630 OG image
 
 interface BuildMetadataArgs {
   title: string;
@@ -31,8 +30,10 @@ export function buildMetadata({
       description,
       url,
       siteName: SITE_NAME,
-      images: [{ url: ogImage ?? DEFAULT_OG_IMAGE, width: 1200, height: 630 }],
       type: "website",
+      // No hardcoded default image here — when `ogImage` isn't passed, Next.js
+      // automatically uses app/opengraph-image.tsx (file-convention image) instead.
+      ...(ogImage ? { images: [{ url: ogImage, width: 1200, height: 630 }] } : {}),
     },
     twitter: {
       card: "summary_large_image",
