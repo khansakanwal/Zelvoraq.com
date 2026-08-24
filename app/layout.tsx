@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Sora, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
@@ -22,6 +23,10 @@ export const metadata: Metadata = buildMetadata({
   path: "/",
 });
 
+// GA4 only loads once NEXT_PUBLIC_GA4_ID is set as an environment variable in
+// Vercel — until then this silently renders nothing, so it's safe to ship now.
+const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${body.variable} ${display.variable} ${mono.variable}`}>
@@ -36,6 +41,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="font-body antialiased bg-base text-primary">
+        {GA4_ID && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} strategy="afterInteractive" />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA4_ID}');
+              `}
+            </Script>
+          </>
+        )}
         <Navbar />
         <main>{children}</main>
         <Footer />
