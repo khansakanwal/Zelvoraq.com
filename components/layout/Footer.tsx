@@ -56,7 +56,7 @@ export function Footer() {
           <ul className="flex flex-col gap-2.5">
             <li><Link href="/privacy-policy" className="text-secondary text-[13.5px] hover:text-primary transition-colors">Privacy Policy</Link></li>
             <li><Link href="/terms-of-service" className="text-secondary text-[13.5px] hover:text-primary transition-colors">Terms of Service</Link></li>
-            <li><a href="mailto:hello@zelvoraq.com" className="text-secondary text-[13.5px] hover:text-primary transition-colors">hello@zelvoraq.com</a></li>
+            <li><a href="mailto:contact@zelvoraq.com" className="text-secondary text-[13.5px] hover:text-primary transition-colors">contact@zelvoraq.com</a></li>
           </ul>
         </div>
       </div>

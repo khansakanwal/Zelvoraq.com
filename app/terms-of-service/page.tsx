@@ -120,7 +120,7 @@ export default function TermsPage() {
           <h2 className="font-display text-[18px] font-semibold text-primary mb-2">11. Contact</h2>
           <p>
             Questions about these terms can be sent to{" "}
-            <a href="mailto:hello@zelvoraq.com" className="text-accent">hello@zelvoraq.com</a>.
+            <a href="mailto:contact@zelvoraq.com" className="text-accent">contact@zelvoraq.com</a>.
           </p>
         </div>
       </div>
