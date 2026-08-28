@@ -120,7 +120,7 @@ export default function PrivacyPolicyPage() {
           <h2 className="font-display text-[18px] font-semibold text-primary mb-2">9. Contact</h2>
           <p>
             Questions about this policy, or requests to access, correct, or delete your information,
-            can be sent to <a href="mailto:hello@zelvoraq.com" className="text-accent">hello@zelvoraq.com</a>.
+            can be sent to <a href="mailto:contact@zelvoraq.com" className="text-accent">contact@zelvoraq.com</a>.
             [PLACEHOLDER: registered business address, once available.]
           </p>
         </div>

@@ -156,7 +156,7 @@ export function LeadForm({ prefillAutomate }: { prefillAutomate?: string }) {
 
       {status === "error" && (
         <p className="text-[13px] text-accent">
-          Something went wrong sending this — please try again, or email hello@zelvoraq.com directly.
+          Something went wrong sending this — please try again, or email contact@zelvoraq.com directly.
         </p>
       )}
 
