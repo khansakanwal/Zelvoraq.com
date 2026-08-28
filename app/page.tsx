@@ -7,6 +7,7 @@ import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { CTASection } from "@/components/ui/CTASection";
 import { WorkflowDiagram } from "@/components/visuals/WorkflowDiagram";
 import { AssessmentFlow } from "@/components/forms/AssessmentFlow";
+import { ChatWidget } from "@/components/ai/ChatWidget";
 import { Reveal } from "@/components/ui/Reveal";
 import { solutions } from "@/lib/solutions-data";
 
@@ -93,18 +94,17 @@ export default function HomePage() {
               <span className="w-2.5 h-2.5 rounded-full bg-elevated2" />
               <span className="w-2.5 h-2.5 rounded-full bg-elevated2" />
               <span className="w-2.5 h-2.5 rounded-full bg-elevated2" />
-              <span className="ml-3 font-mono text-[10px] text-tertiary">zelvoraq-agent · live</span>
+              <span className="ml-3 flex items-center gap-1.5 font-mono text-[10px] text-tertiary">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-data opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-data" />
+                </span>
+                zelvoraq-agent · live
+              </span>
             </div>
             <div className="p-5">
-              <div className="flex flex-col gap-2 mb-5">
-                <div className="self-start max-w-[85%] bg-elevated rounded-lg px-3 py-2 text-[12px] text-secondary">
-                  Hi, I&apos;d like to know more about your pricing.
-                </div>
-                <div className="self-end max-w-[85%] bg-accent text-[#191307] rounded-lg px-3 py-2 text-[12px] font-medium">
-                  Happy to help — what does your team currently handle manually?
-                </div>
-              </div>
-              <span className="text-secondary text-[13px] font-mono mb-3 block">Live system example</span>
+              <ChatWidget variant="inline" />
+              <span className="text-secondary text-[13px] font-mono mt-5 mb-3 block">How it connects behind the scenes</span>
               <WorkflowDiagram nodes={["Customer", "AI Agent", "Qualification", "Automation", "CRM", "Booking"]} scale="compact" />
             </div>
           </div>
