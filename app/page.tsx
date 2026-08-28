@@ -94,7 +94,13 @@ export default function HomePage() {
               <span className="w-2.5 h-2.5 rounded-full bg-elevated2" />
               <span className="w-2.5 h-2.5 rounded-full bg-elevated2" />
               <span className="w-2.5 h-2.5 rounded-full bg-elevated2" />
-              <span className="ml-3 font-mono text-[10px] text-tertiary">zelvoraq-agent · live</span>
+              <span className="ml-3 flex items-center gap-1.5 font-mono text-[10px] text-tertiary">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-data opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-data" />
+                </span>
+                zelvoraq-agent · live
+              </span>
             </div>
             <div className="p-5">
               <ChatWidget variant="inline" />
