@@ -60,7 +60,7 @@ At that point — and ONLY at that point, using real values from the conversatio
 
 <<LEAD_CAPTURE>>{"name":"...","contact":"...","businessType":"...","budget":"..."}<<END_LEAD_CAPTURE>>
 
-Include this block only once per conversation, only once all four fields are genuinely known. Never fabricate a value for any field — if something is still missing, keep asking naturally instead of guessing or emitting the block early.`;
+Keep your normal visible reply BRIEF (2-4 sentences) whenever you are about to include this block, so the whole response — visible reply plus block — comfortably fits within your output limit. Include this block only once per conversation, only once all four fields are genuinely known. Never fabricate a value for any field — if something is still missing, keep asking naturally instead of guessing or emitting the block early.`;
 
 interface ChatMessage {
   role: "user" | "assistant";
@@ -100,10 +100,19 @@ interface CapturedLead {
 
 const LEAD_CAPTURE_PATTERN = /<<LEAD_CAPTURE>>([\s\S]*?)<<END_LEAD_CAPTURE>>/;
 
+// If the model's reply gets cut off (e.g. it hits the output token limit)
+// before it can emit the closing <<END_LEAD_CAPTURE>> tag, LEAD_CAPTURE_PATTERN
+// above won't match at all. Without this fallback, the raw, half-written
+// <<LEAD_CAPTURE>>{...} JSON would leak straight into the visitor-facing
+// chat bubble. This pattern catches that case so we can still strip it from
+// what the visitor sees — we just can't recover a lead from a partial block.
+const LEAD_CAPTURE_PARTIAL_PATTERN = /<<LEAD_CAPTURE>>[\s\S]*$/;
+
 function extractLeadCapture(rawReply: string): { visibleReply: string; lead: CapturedLead | null } {
   const match = rawReply.match(LEAD_CAPTURE_PATTERN);
   if (!match) {
-    return { visibleReply: rawReply.trim(), lead: null };
+    const visibleReply = rawReply.replace(LEAD_CAPTURE_PARTIAL_PATTERN, "").trim();
+    return { visibleReply, lead: null };
   }
 
   const visibleReply = rawReply.replace(LEAD_CAPTURE_PATTERN, "").trim();
@@ -171,7 +180,13 @@ export async function POST(req: Request) {
         // Verify the current recommended model name in Anthropic's docs before launch —
         // model identifiers change over time and this default may be stale.
         model: process.env.ANTHROPIC_MODEL || "claude-sonnet-5",
-        max_tokens: 400,
+        // Raised from 400: a reply that lands right at the CALL TO ACTION step
+        // includes both the visible thank-you message AND the hidden
+        // <<LEAD_CAPTURE>>{...}<<END_LEAD_CAPTURE>> block. 400 tokens was
+        // sometimes too tight for both, truncating the block before its closing
+        // tag and silently breaking lead capture (see LEAD_CAPTURE_PARTIAL_PATTERN
+        // above for the visible-reply side of that same bug).
+        max_tokens: 800,
         system: SYSTEM_PROMPT,
         messages: messages.map((m) => ({ role: m.role, content: m.content })),
       }),
