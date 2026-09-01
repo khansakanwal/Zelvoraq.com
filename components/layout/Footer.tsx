@@ -11,6 +11,13 @@ const footerNav = [
   { label: "Contact", href: "/contact" },
 ];
 
+// External profiles. LinkedIn currently points to Khansa's personal profile as an
+// interim link — swap it for the ZELVORAQ Company Page URL once that page is live.
+const socialLinks = [
+  { label: "Fiverr", href: "https://www.fiverr.com/s/gvm8ZqE" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/khansa-kanwal-039b40177/" },
+];
+
 export function Footer() {
   return (
     <footer className="border-t border-borderc mt-30">
@@ -57,6 +64,18 @@ export function Footer() {
             <li><Link href="/privacy-policy" className="text-secondary text-[13.5px] hover:text-primary transition-colors">Privacy Policy</Link></li>
             <li><Link href="/terms-of-service" className="text-secondary text-[13.5px] hover:text-primary transition-colors">Terms of Service</Link></li>
             <li><a href="mailto:contact@zelvoraq.com" className="text-secondary text-[13.5px] hover:text-primary transition-colors">contact@zelvoraq.com</a></li>
+            {socialLinks.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-secondary text-[13.5px] hover:text-primary transition-colors"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
