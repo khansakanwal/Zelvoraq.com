@@ -11,11 +11,11 @@ const footerNav = [
   { label: "Contact", href: "/contact" },
 ];
 
-// External profiles — update the LinkedIn href once the ZELVORAQ Company Page (or
-// Khansa's personal profile, as an interim link) URL is confirmed.
+// External profiles. LinkedIn currently points to Khansa's personal profile as an
+// interim link — swap it for the ZELVORAQ Company Page URL once that page is live.
 const socialLinks = [
   { label: "Fiverr", href: "https://www.fiverr.com/s/gvm8ZqE" },
-  // { label: "LinkedIn", href: "TODO: add once confirmed" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/khansa-kanwal-039b40177/" },
 ];
 
 export function Footer() {
